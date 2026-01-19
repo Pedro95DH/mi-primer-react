@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Pokedex from "./PokemonCard.jsx";
+import Pokedex from "./components/PokemonCard.jsx";
 
 function App() {
   const [name, setName] = useState(`Pedro Díaz`);
