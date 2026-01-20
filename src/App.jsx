@@ -126,13 +126,13 @@ function App() {
     <div>
       <h1>Pokédex (Usando Props)</h1>
 
-      <PokemonCard pokemonName="Pikachu" pokemonType="Eléctrico" />
+      <PokemonCard pokemonName="Geodude" />
 
-      <PokemonCard pokemonName="Charmander" pokemonType="Fuego" />
+      <PokemonCard pokemonName="Charmander" />
 
-      <PokemonCard pokemonName="Squirtle" pokemonType="Agua" />
+      <PokemonCard pokemonName="Squirtle" />
 
-      <PokemonCard pokemonName="Bulbasaur" pokemonType="Planta/Veneno" />
+      <PokemonCard pokemonName="Bulbasaur" />
     </div>
   );
 }

@@ -61,11 +61,48 @@ import { useState, useEffect } from "react";
 
 // Ejercicio día 27: PROPS //
 
-function PokemonCard({ pokemonName, pokemonType }) {
+function PokemonCard({ pokemonName }) {
+  const [pokemon, setPokemon] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!pokemonName) return;
+
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Pokemon no encontrado...");
+      })
+      .then((data) => {
+        setPokemon(data);
+        setError(null);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setPokemon(null);
+      });
+  }, [pokemonName]);
+
+  if (error) {
+    return <div style={{ color: "red" }}>Error: {error}</div>;
+  }
+
+  if (!pokemon) {
+    return <div>Cargando pokémon...</div>;
+  }
+
   return (
     <div style={{ border: "1px solid grey", padding: "10px", margin: "10px" }}>
-      <h2>Nombre: {pokemonName}</h2>
-      <p>Elemento: {pokemonType}</p>
+      <h2>Nombre: {pokemon.name}</h2>
+      <img
+        src={pokemon.sprites.front_default}
+        alt={pokemon.name}
+        style={{ width: "100px" }}
+      />
+      <p>Elemento: {pokemon.types[0].type.name}</p>
+      <p>ID: {pokemon.id}</p>
     </div>
   );
 }
